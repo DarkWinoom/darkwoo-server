@@ -128,7 +128,7 @@ update-alternatives --config php
 
 ## 延伸问题
 ### 共享目录权限
-homestead 默认会将共享目录的权限设置为**777**，即允许所有人对文件进行写操作，这样对于权限较为复杂的linux系统来说可以有效的避免一些权限问题。同时在 vagrant 中 ```chomd``` 命令是没有任何效果的，如果有需要修改文件夹权限的需求，可以参考 [官方文档synced-folders](https://www.vagrantup.com/docs/synced-folders/basic_usage.html) 和 [vagrant-synced-folders-permissions](https://jeremykendall.net/2013/08/09/vagrant-synced-folders-permissions/)，通过修改 vagrant 的配置文件赋予文件夹与文件对应的权限
+homestead 默认会将共享目录中的所有目录权限设置为**777**，这样在开发时无需过多关注权限问题（在 vagrant ssh 中 ```chomd``` 命令是没有任何效果的），如果有需要修改文件夹权限的需求，可以参考 [官方文档synced-folders](https://www.vagrantup.com/docs/synced-folders/basic_usage.html) 和 [vagrant-synced-folders-permissions](https://jeremykendall.net/2013/08/09/vagrant-synced-folders-permissions/)，通过修改 vagrant 的配置文件赋予文件夹与文件对应的权限
 
 ### guest additions 与 virtualbox 版本不匹配
 在执行 ```vagrant up``` 命令时可能会看到这样的提示。一般来说版本不匹配不会产生太大影响，但有时候可能会导致共享目录无法访问的问题。这时候推荐一个插件 ```vagrant-vbguest```，该插件会在每次执行 ```vagrant up``` 的时候检测版本，如果不匹配就会自动更新：
